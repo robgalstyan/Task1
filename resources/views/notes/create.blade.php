@@ -20,9 +20,8 @@
             </h1>
         </div>
         <div class="offset-sm-3 col-sm-6" style="margin-top: 40px">
-            <form method="post" action="{{url('/store')}}" enctype="multipart/form-data">
+            <form method="post" action="{{url('/store')}}">
                 @csrf
-                {{--                @method('PUT')--}}
                 <div class="form-group">
                     <label for="name">Note Title:</label>
                     <i class="fas fa-file-signature"></i>

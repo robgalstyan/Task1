@@ -43,20 +43,24 @@ class NoteController extends Controller
         return view('notes.edit', compact('edit_note'));
     }
 
-    public function edit_save(Request $request, $id)
+    public function update(Request $request, $id)
     {
+        $user_id = Note::where('id', $id)->value('user_id');
         $validatedData = $request->validate([
             'title'=>'required|max:255|',
             'description'=>'required|max:500|',
         ]);
 
-        if($validatedData)
+        if(Auth::id() == $user_id)
         {
-        Note::where('id', $id)
-            ->update([
-                'title'=>$request->title,
-                'description'=>$request->description
-            ]);
+            if($validatedData)
+            {
+            Note::where('id', $id)
+                ->update([
+                    'title'=>$request->title,
+                    'description'=>$request->description
+                ]);
+            }
         }
         return redirect('home');
     }
@@ -64,7 +68,12 @@ class NoteController extends Controller
 
     public function delete($id)
     {
-       Note::where('id', $id)->delete();
+       $user_id = Note::where('id', $id)->value('user_id');
+
+       if(Auth::id() == $user_id)
+       {
+           Note::where('id', $id)->delete();
+       }
        return redirect()->back();
     }
 

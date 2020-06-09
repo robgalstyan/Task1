@@ -25,14 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $my_notes = Note::where('user_id', Auth::id())->paginate(10);
+        $my_notes = Note::where('user_id', Auth::id())->paginate(4);
         return view('home', compact('my_notes'));
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/');
-    }
 
 }

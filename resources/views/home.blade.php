@@ -4,7 +4,6 @@
     <title>Home</title>
     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
               integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -38,9 +37,26 @@
                 color: #818181;
                 display: block;
                 transition: 0.3s;
+
             }
 
             .sidepanel a:hover {
+                color: #f1f1f1;
+            }
+
+            .sidepanel input
+            {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+                border: none;
+                background-color: #B8D477;
+            }
+
+            .sidepanel input:hover {
                 color: #f1f1f1;
             }
 
@@ -102,6 +118,23 @@
                 color: #ffffff;
             }
 
+            ul.pagination
+            {
+                justify-content: center;
+            }
+
+            ul.pagination>li>a
+            {
+                background-color: #B8D477;
+                color: #0b2e13;
+            }
+
+            .page-item.active .page-link
+            {
+                background-color: #AABDB2;
+                border-color: #AABDB2;
+            }
+
         </style>
     </head>
     <body>
@@ -110,7 +143,12 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <a href="{{url('/home')}}" class="nav-link active">Home</a>
         <a href="{{url('/create')}}">Create notes</a>
-        <a href="{{url('/logout')}}">Logout</a>
+        <div>
+            <form method="post" action="{{url('logout')}}">
+                @csrf
+                <input type="submit" value="Logout">
+            </form>
+        </div>
     </div>
 
     <div class="div-opnbtn">
